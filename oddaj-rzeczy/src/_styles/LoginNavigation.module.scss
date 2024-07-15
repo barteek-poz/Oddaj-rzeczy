@@ -1,0 +1,20 @@
+@import "./colors.module.scss";
+
+.loginNav {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3rem;
+  margin: 0;
+  margin-right: 14rem;
+  padding: 3rem 0;
+  a {
+    color: $color-light-gray;
+  }
+
+  .active {
+    border: 1px solid $color-yellow;
+    padding: 0.8rem 1rem;
+  }
+}
