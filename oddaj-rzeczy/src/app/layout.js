@@ -1,4 +1,7 @@
+import MainNavigation from "@/_components/MainNavigation";
 import { Merriweather, Open_Sans } from "next/font/google";
+import  "../_styles/global.scss"
+import LoginNavigation from "@/_components/LoginNavigation";
 
 const merriweather = Merriweather({ subsets: ["latin"], weight: "400" });
 const openSans = Open_Sans({ subsets: ["latin"], weight: "400" });
@@ -9,8 +12,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={merriweather.className}>{children}</body>
+    <html lang="en" >
+      <body className={openSans.className}>
+        <LoginNavigation/>
+        <MainNavigation />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }

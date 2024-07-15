@@ -1,0 +1,16 @@
+@import "./colors.module.scss";
+
+.navigationList {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5.5rem;
+  list-style: none;
+  margin: 0;
+  margin-right: 14rem;
+
+  a {
+    color: $color-dark-gray;
+  }
+}
