@@ -22,17 +22,17 @@ const LoginNavigation = () => {
           </LinkButton>
         </div>
       ) : (
-        <LinkButton href="/" active={false} onBtnClick={loginHandler}>
+        <LinkButton href="/login" active={false} >
           Zaloguj
         </LinkButton>
       )}
       {userIsLogged ? (
-        <Link href="/signout" onClick={logoutHandler}>
+        <Link href="/signout" >
           Wyloguj
         </Link>
       ) : (
         <div className={styles.active}>
-          <LinkButton href="/register" onBtnClick={loginHandler}>
+          <LinkButton href="/register" >
             Załóż konto
           </LinkButton>
         </div>
