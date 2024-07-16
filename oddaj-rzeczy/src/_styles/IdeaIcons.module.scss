@@ -1,0 +1,23 @@
+@import "./colors.module.scss";
+
+.ideaIcons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  max-width: 14rem;
+  span {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 1.6rem;
+  }
+  .border {
+    border: 1px solid black;
+    width: 70px;
+    font-weight: 300;
+  }
+}
