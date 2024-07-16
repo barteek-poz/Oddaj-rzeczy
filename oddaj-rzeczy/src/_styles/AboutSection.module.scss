@@ -1,0 +1,45 @@
+@import "./colors.module.scss";
+
+.aboutSection {
+  width: 100vw;
+  height: 935px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aboutContent {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-white;
+
+  h2 {
+    margin-bottom: 3rem;
+  }
+
+  p {
+    max-width: 60rem;
+    line-height: 54px;
+    text-align: center;
+    font-size: 3rem;
+    margin: 6rem 0 4rem 0;
+  }
+}
+
+.aboutImg {
+  position: relative;
+  width: 50%;
+  height: 100%;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.aboutSignature {
+   margin-left: 35rem;
+}
