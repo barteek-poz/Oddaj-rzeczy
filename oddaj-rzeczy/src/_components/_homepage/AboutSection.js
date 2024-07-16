@@ -9,16 +9,16 @@ const AboutSection = () => {
     <section className={styles.aboutSection} id="about">
       <div className={styles.aboutContent}>
         <h2>O nas</h2>
-        <Image src={decoration} />
+        <Image src={decoration} alt="decoration" />
         <p>
           Nori grape silver beet broccoli kombu beet greens fava bean potato
           quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil
           turnip greens parsnip.
         </p>
-        <Image src={signatureImg} className={styles.aboutSignature} />
+        <Image src={signatureImg} className={styles.aboutSignature} alt="people"/>
       </div>
       <div className={styles.aboutImg}>
-        <Image src={peopleImg} placeholder="blur" fill/>
+        <Image src={peopleImg} placeholder="blur" fill alt="signature"/>
       </div>
     </section>
   );

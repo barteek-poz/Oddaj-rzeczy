@@ -7,7 +7,7 @@ const LoginPage = () => {
   return (
     <div className={styles.registerPage}>
       <h1>Zaloguj się</h1>
-      <Image src={decoration} />
+      <Image src={decoration} alt="decoration" />
       <LoginForm />
     </div>
   );

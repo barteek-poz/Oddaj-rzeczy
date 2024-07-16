@@ -1,0 +1,12 @@
+@import "./colors.module.scss";
+
+.contactSection {
+  position: relative;
+  width: 100vw;
+  height: 800px;
+  background-image: linear-gradient(#ffffffc9, #ffffffc9),
+    url("../../public/assets/Background-Contact-Form.jpg");
+  background-position: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

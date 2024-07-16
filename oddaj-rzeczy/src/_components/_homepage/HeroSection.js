@@ -8,13 +8,13 @@ const HeroSection = () => {
   return (
     <section className={styles.heroBox} id="start">
       <div className={styles.heroImg}>
-        <Image src={heroImg} fill placeholder="blur" />
+        <Image src={heroImg} fill placeholder="blur" alt="hero image" />
       </div>
       <div className={styles.heroContent}>
         <h1>
           Zacznij pomagać! <br /> Oddaj niechciane rzeczy w zaufane ręce
         </h1>
-        <Image src={decoration} />
+        <Image src={decoration} alt="decoration" />
         <div className={styles.heroBtns}>
           <LinkButton href="/login">Oddaj rzeczy</LinkButton>
           <LinkButton href="/">Zorganizuj zbiórkę</LinkButton>
