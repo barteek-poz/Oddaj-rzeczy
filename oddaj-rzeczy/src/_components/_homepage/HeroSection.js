@@ -1,8 +1,8 @@
 import Image from "next/image";
-import heroImg from "../../public/assets/Home-Hero-Image.jpg";
-import decoration from "../../public/assets/Decoration.svg";
-import styles from "../_styles/HeroSection.module.scss";
-import LinkButton from "./LinkButton";
+import heroImg from "../../../public/assets/Home-Hero-Image.jpg";
+import decoration from "../../../public/assets/Decoration.svg";
+import styles from "../../_styles/HeroSection.module.scss";
+import LinkButton from "../LinkButton";
 
 const HeroSection = () => {
   return (

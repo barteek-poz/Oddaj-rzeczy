@@ -1,13 +1,13 @@
-import styles from "../_styles/IdeaSection.module.scss";
-import decoration from "../../public/assets/Decoration.svg";
-import icon1 from "../../public/assets/Icon-1.svg";
-import icon2 from "../../public/assets/Icon-2.svg";
-import icon3 from "../../public/assets/Icon-3.svg";
-import icon4 from "../../public/assets/Icon-4.svg";
+import styles from "../../_styles/IdeaSection.module.scss";
+import decoration from "../../../public/assets/Decoration.svg";
+import icon1 from "../../../public/assets/Icon-1.svg";
+import icon2 from "../../../public/assets/Icon-2.svg";
+import icon3 from "../../../public/assets/Icon-3.svg";
+import icon4 from "../../../public/assets/Icon-4.svg";
 import Image from "next/image";
-import IdeaStats from "./IdeaStats";
-import IdeaIcons from "./IdeaIcons";
-import LinkButton from "./LinkButton";
+import IdeaStats from "../IdeaStats";
+import IdeaIcons from "../IdeaIcons";
+import LinkButton from "../LinkButton";
 
 const IdeaSection = () => {
   return (
