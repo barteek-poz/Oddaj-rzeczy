@@ -18,7 +18,7 @@ const RegisterForm = () => {
         </div>
       </form>
       <div className={styles.formButtons}>
-        <LinkButton href="/signin">Zaloguj się</LinkButton>
+        <LinkButton href="/login">Zaloguj się</LinkButton>
         <div className={styles.active}>
           <LinkButton href="/">Załóż konto</LinkButton>
         </div>
