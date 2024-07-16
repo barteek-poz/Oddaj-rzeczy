@@ -1,0 +1,47 @@
+@import "./colors.module.scss";
+
+.heroBox {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 6rem;
+
+  .heroImg {
+    position: relative;
+    width: 50vw;
+    height: 100vh;
+
+    img {
+      object-fit: cover;
+      object-position: right;
+    }
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+    font-size: 3.8rem;
+  }
+
+  a {
+    font-size: 3.6rem;
+    font-weight: 100;
+  }
+}
+.heroBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 6rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    width: 31rem;
+    height: 12rem;
+    border: 1px solid $color-dark-gray;
+  }
+}
