@@ -7,7 +7,7 @@ const RegisterPage = () => {
   return (
     <div className={styles.registerPage}>
       <h1>Załóż konto</h1>
-      <Image src={decoration} />
+      <Image src={decoration} alt="decoration"/>
       <RegisterForm />
     </div>
   );

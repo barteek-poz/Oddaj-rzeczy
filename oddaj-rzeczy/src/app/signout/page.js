@@ -6,7 +6,7 @@ const SignoutPage = () => {
   return (
     <div className={styles.signoutPage}>
       <h1>Wylogowanie nastąpiło pomyślnie!</h1>
-      <Image src={decoration} />
+      <Image src={decoration} alt="decoration"/>
       <div className={styles.active}>
         <LinkButton href="/">Strona główna</LinkButton>
       </div>

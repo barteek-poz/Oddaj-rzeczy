@@ -19,7 +19,7 @@ const IdeaSection = () => {
       </div>
       <div className={styles.ideaHeaderBox}>
         <h2>Wystarczą 4 proste kroki</h2>
-        <Image src={decoration} />
+        <Image src={decoration} alt="decoration"/>
       </div>
       <div className={styles.ideaIconsBox}>
         <IdeaIcons icon={icon1} title="Wybierz rzeczy">
