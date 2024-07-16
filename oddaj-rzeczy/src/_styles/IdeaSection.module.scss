@@ -1,0 +1,44 @@
+@import "./colors.module.scss";
+
+.ideaStatsBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 16rem;
+  height: 38rem;
+  background-color: $color-yellow;
+}
+
+.ideaHeaderBox {
+  text-align: center;
+  margin: 5rem 0 5rem 0;
+  h2 {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.ideaIconsBox {
+  height: 32.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17rem;
+  background-color: $color-white;
+}
+
+.ideaBtn {
+  width: 31rem;
+  height: 12rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid $color-dark-gray;
+  margin: 3rem auto 8rem auto;
+  a {
+    font-size: 3.6rem;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+}

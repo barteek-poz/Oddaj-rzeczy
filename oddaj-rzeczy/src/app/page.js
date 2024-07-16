@@ -1,9 +1,11 @@
-import HeroPage from "@/_components/HeroPage";
-import styles from "../_styles/Home.module.scss";
+import HeroSection from "@/_components/HeroSection";
+import IdeaSection from "@/_components/IdeaSection";
+
 export default function Home() {
   return (
     <>
-      <HeroPage />
+      <HeroSection />
+      <IdeaSection/>
     </>
   );
 }

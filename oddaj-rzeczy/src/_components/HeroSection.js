@@ -1,12 +1,12 @@
 import Image from "next/image";
 import heroImg from "../../public/assets/Home-Hero-Image.jpg";
 import decoration from "../../public/assets/Decoration.svg";
-import styles from "../_styles/HeroPage.module.scss";
+import styles from "../_styles/HeroSection.module.scss";
 import LinkButton from "./LinkButton";
 
-const HeroPage = () => {
+const HeroSection = () => {
   return (
-    <div className={styles.heroBox}>
+    <section className={styles.heroBox} id="start">
       <div className={styles.heroImg}>
         <Image src={heroImg} fill placeholder="blur" />
       </div>
@@ -20,8 +20,8 @@ const HeroPage = () => {
           <LinkButton href="/">Zorganizuj zbiórkę</LinkButton>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default HeroPage;
+export default HeroSection;
