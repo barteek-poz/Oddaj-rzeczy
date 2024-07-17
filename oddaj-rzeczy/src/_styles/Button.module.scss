@@ -1,0 +1,15 @@
+@import "./colors.module.scss";
+
+.btn {
+  width: 21rem;
+  height: 8rem;
+  background-color: transparent;
+  color: $color-dark-gray;
+  font-size: 2.4rem;
+  text-align: center;
+  border: none;
+  font-weight: 300;
+}
+.active {
+  border: 1px solid $color-dark-gray;
+}

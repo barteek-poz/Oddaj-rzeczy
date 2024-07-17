@@ -4,7 +4,7 @@ const navLinks = [
   { name: "Start", href: "/#start" },
   { name: "O co chodzi?", href: "/#idea" },
   { name: "O nas", href: "/#about" },
-  { name: "Fundacja i organizacje", href: "/#organizations" },
+  { name: "Fundacja i organizacje", href: "/#foundations" },
   { name: "Kontakt", href: "/#contact" },
 ];
 
