@@ -14,6 +14,7 @@ body {
 a {
   text-decoration: none;
   color: $color-dark-gray;
+  cursor: pointer;
 }
 
 h1 {
@@ -24,4 +25,8 @@ h1 {
 h2 {
   font-size: 3.8rem;
   font-weight: 400;
+}
+
+button {
+  cursor: pointer;
 }
