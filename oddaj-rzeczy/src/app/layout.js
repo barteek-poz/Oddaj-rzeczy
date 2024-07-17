@@ -4,7 +4,7 @@ import "../_styles/global.scss";
 import LoginNavigation from "@/_components/LoginNavigation";
 
 const merriweather = Merriweather({ subsets: ["latin"], weight: "400" });
-const openSans = Open_Sans({ subsets: ["latin"], weight:["300", "400"] });
+const openSans = Open_Sans({ subsets: ["latin"], weight:["300", "400", "700"], style: ['normal'] });
 
 export const metadata = {
   title: "Oddaj rzeczy",
