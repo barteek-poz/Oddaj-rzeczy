@@ -1,6 +1,13 @@
+"use client";
+import { useLoginContext } from "@/_context/LoginContext";
 import styles from "../_styles/LoginForm.module.scss";
 import LinkButton from "./LinkButton";
+import { useRouter } from "next/navigation";
+
 const LoginForm = () => {
+  const { setUserIsLogged } = useLoginContext();
+  const router = useRouter();
+
   return (
     <div className={styles.LoginFormBox}>
       <form className={styles.LoginForm}>
@@ -16,7 +23,15 @@ const LoginForm = () => {
       <div className={styles.formButtons}>
         <LinkButton href="/register">Załóż konto</LinkButton>
         <div className={styles.active}>
-          <LinkButton href="/">Zaloguj się</LinkButton>
+          <LinkButton
+            onBtnClick={(e) => {
+              e.preventDefault();
+              setUserIsLogged(true);
+              router.push("/");
+            }}
+            href="/">
+            Zaloguj się
+          </LinkButton>
         </div>
       </div>
     </div>

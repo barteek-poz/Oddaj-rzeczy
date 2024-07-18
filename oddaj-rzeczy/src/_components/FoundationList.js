@@ -65,12 +65,12 @@ const FoundationList = ({ foundationsList }) => {
             );
           })}
         </ul>
-        <Pagination
+       {foundationsType.list.length === foundationsPerPage ? null : <Pagination
           totalFoundations={foundationsType.list.length}
           foundationsPerPage={foundationsPerPage}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
-        />
+        />}
       </div>
     </>
   );
