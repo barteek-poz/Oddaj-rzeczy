@@ -1,8 +1,6 @@
 import Image from "next/image";
 import decoration from "../../../public/assets/Decoration.svg";
 import styles from "../../_styles/FoundationsSection.module.scss";
-import Button from "../Button";
-import FoundationItem from "../FoundationItem";
 import FoundationList from "../FoundationList";
 
 const foundationsList = {
@@ -40,6 +38,24 @@ const foundationsList = {
       },
       {
         name: "Fundacja C",
+        mission:
+          "Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania.",
+        collects: "ubrania, jedzenie, ciepłe koce",
+      },
+      {
+        name: "Fundacja 1",
+        mission:
+          "Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania.",
+        collects: "ubrania, jedzenie, ciepłe koce",
+      },
+      {
+        name: "Fundacja 2",
+        mission:
+          "Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania.",
+        collects: "ubrania, jedzenie, ciepłe koce",
+      },
+      {
+        name: "Fundacja 3",
         mission:
           "Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania.",
         collects: "ubrania, jedzenie, ciepłe koce",
@@ -109,25 +125,7 @@ const foundationsList = {
         mission:
           "Quis varius quam quisque id diam vel quam elementum pulvinar.",
         collects: "Egestas, sed, tempus",
-      },
-      {
-        name: "Local 4",
-        mission:
-          "Hendrerit gravida rutrum quisque non tellus orci ac auctor augue.",
-        collects: "Ut, aliquam, purus, sit, amet",
-      },
-      {
-        name: "Local 5",
-        mission:
-          "Quis varius quam quisque id diam vel quam elementum pulvinar.",
-        collects: "Egestas, sed, tempus",
-      },
-      {
-        name: "Local 6",
-        mission:
-          "Quis varius quam quisque id diam vel quam elementum pulvinar.",
-        collects: "Egestas, sed, tempus",
-      },
+      }
     ],
   },
 };

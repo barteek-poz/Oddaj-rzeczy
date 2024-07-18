@@ -1,20 +1,15 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
 import styles from "../_styles/LoginNavigation.module.scss";
 import LinkButton from "./LinkButton";
+import { useLoginContext } from "@/_context/LoginContext";
 
 const LoginNavigation = () => {
-  const [userIsLogged, setUserIsLogged] = useState(false);
-  const loginHandler = () => {
-    setUserIsLogged(true);
-  };
-  const logoutHandler = () => {
-    setUserIsLogged(false);
-  };
+  const {userIsLogged, setUserIsLogged}= useLoginContext()
+  console.log(userIsLogged);
   return (
     <div className={styles.loginNav}>
-      {userIsLogged ? <p>Cześć abcsdadsasdasdasdas@pl.pl</p> : null}
+      {userIsLogged ? <p>Cześć abc@pl.pl</p> : null}
       {userIsLogged ? (
         <div className={styles.active}>
           <LinkButton href="/" active={false}>
@@ -22,19 +17,19 @@ const LoginNavigation = () => {
           </LinkButton>
         </div>
       ) : (
-        <LinkButton href="/login" active={false} >
+        <LinkButton href="/login" active={false}>
           Zaloguj
         </LinkButton>
       )}
       {userIsLogged ? (
-        <Link href="/signout" >
+        <Link
+        onClick={()=>{setUserIsLogged(false)}}
+          href="/signout">
           Wyloguj
         </Link>
       ) : (
         <div className={styles.active}>
-          <LinkButton href="/register" >
-            Załóż konto
-          </LinkButton>
+          <LinkButton href="/register">Załóż konto</LinkButton>
         </div>
       )}
     </div>
