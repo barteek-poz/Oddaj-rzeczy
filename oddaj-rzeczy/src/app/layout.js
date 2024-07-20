@@ -3,6 +3,7 @@ import { Merriweather, Open_Sans } from "next/font/google";
 import "../_styles/global.scss";
 import LoginNavigation from "@/_components/LoginNavigation";
 import { LoginContextProvider } from "@/_context/LoginContext";
+import ContactSection from "@/_components/_homepage/ContactSection";
 
 const merriweather = Merriweather({ subsets: ["latin"], weight: "400" });
 const openSans = Open_Sans({
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
             <MainNavigation />
           </div>
           <main>{children}</main>
+          <ContactSection/>
         </LoginContextProvider>
       </body>
     </html>
