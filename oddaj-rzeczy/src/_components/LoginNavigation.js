@@ -5,11 +5,11 @@ import LinkButton from "./LinkButton";
 import { useLoginContext } from "@/_context/LoginContext";
 
 const LoginNavigation = () => {
-  const {userIsLogged, setUserIsLogged}= useLoginContext()
-  console.log(userIsLogged);
+  const {userIsLogged, setUserIsLogged, userEmail}= useLoginContext()
+  
   return (
     <div className={styles.loginNav}>
-      {userIsLogged ? <p>Cześć abc@pl.pl</p> : null}
+      {userIsLogged ? <p>Cześć {userEmail}</p> : null}
       {userIsLogged ? (
         <div className={styles.active}>
           <LinkButton href="/" active={false}>
