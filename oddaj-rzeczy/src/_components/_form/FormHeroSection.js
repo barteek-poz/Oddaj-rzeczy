@@ -6,7 +6,7 @@ import FormStep from "../FormStep";
 
 const FormHeroSection = () => {
   return (
-    <section className={styles.heroBox} id="start">
+    <section className={styles.heroBox} id="form-start">
       <div className={styles.heroImg}>
         <Image src={heroImg} fill placeholder="blur" alt="hero image" />
       </div>
