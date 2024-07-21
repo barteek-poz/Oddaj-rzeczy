@@ -1,0 +1,20 @@
+@import "./colors.module.scss";
+
+.thankYou {
+  width: 50%;
+ height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  padding-left: 30rem;
+  h2 {
+    font-weight: 300;
+    font-size: 4rem;
+    margin-bottom: 2.5rem;
+  }
+  img {
+    margin: 0 auto;
+  }
+}

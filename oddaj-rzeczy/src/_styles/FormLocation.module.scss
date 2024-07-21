@@ -1,0 +1,68 @@
+@import "./colors.module.scss";
+
+.formLocation {
+  p {
+    margin: 5rem 0 2rem 0;
+  }
+  input {
+    background-color: transparent;
+    width: 57rem;
+    height: 4rem;
+    border: 1px solid $color-dark-gray;
+    outline-color: $color-yellow;
+    padding: 0 1rem;
+  }
+}
+
+.checkboxes {
+  max-width: 50%;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+
+  div[id="checkbox"] {
+    background-color: transparent;
+    border: 1px solid $color-dark-gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+overflow: hidden;
+    max-height: 5rem;
+
+    label {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    label span {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      padding: 2rem;
+    }
+
+    label input {
+      position: absolute;
+      display: none;
+      color: #fff !important;
+    }
+
+    label input + span {
+      color: $color-dark-gray;
+    }
+
+    input:checked + span {
+      color: $color-dark-gray;
+    }
+
+    input:checked + span {
+      background-color: $color-yellow;
+    }
+  }
+}

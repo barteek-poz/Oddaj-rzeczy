@@ -1,0 +1,45 @@
+@import "./colors.module.scss";
+
+@import "./colors.module.scss";
+
+.summary {
+  span {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 4.5rem 0 2rem 0;
+  }
+  p {
+    font-size: 2.4rem;
+    font-weight: 400;
+  }
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  img {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+.formSummaryBox {
+  display: flex;
+  gap: 15rem;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  label {
+    max-width: 12rem;
+  }
+  p {
+    font-weight: 300;
+  }
+}
