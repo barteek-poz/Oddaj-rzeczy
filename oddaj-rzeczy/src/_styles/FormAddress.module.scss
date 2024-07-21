@@ -1,0 +1,43 @@
+@import "./colors.module.scss";
+
+.formAddressBox {
+  display: flex;
+  gap: 15rem;
+}
+
+.form {
+  span {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+  }
+  .inputBox {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    label {
+      font-size: 2.4rem;
+      font-weight: 300;
+      max-width: 12rem;
+    }
+
+    input,
+    textarea {
+      background-color: transparent;
+      border: 1px solid $color-dark-gray;
+      width: 25rem;
+      height: 4rem;
+    }
+
+    textarea {
+      width: 25rem;
+      height: 12rem;
+      resize: none;
+    }
+  }
+}
