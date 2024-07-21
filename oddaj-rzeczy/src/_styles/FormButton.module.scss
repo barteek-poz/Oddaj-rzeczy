@@ -1,0 +1,12 @@
+@import "./colors.module.scss";
+
+.formButton {
+  font-size: 2.4rem;
+  color: $color-dark-gray;
+  background-color: transparent;
+  font-weight: 300;
+  width: 18rem;
+  height: 8rem;
+  border: 1px solid $color-dark-gray;
+  margin-right: 5rem;
+}
