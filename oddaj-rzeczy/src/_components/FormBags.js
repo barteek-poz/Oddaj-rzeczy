@@ -1,10 +1,13 @@
-const FormBags = () => {
+const FormBags = ({ numOfBags, updateForm }) => {
   return (
-    <form>
+    <div>
       <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
       <div id="select">
         <label>Liczba 60l worków:</label>
-        <select name="bags" defaultValue="default">
+        <select
+          name="bags"
+          defaultValue={numOfBags ? numOfBags : 'default'}
+          onChange={(e) => updateForm({ numOfBags: e.target.value })}>
           <option value="default" disabled>
             - wybierz -
           </option>
@@ -15,7 +18,7 @@ const FormBags = () => {
           <option value="5">5</option>
         </select>
       </div>
-    </form>
+    </div>
   );
 };
 

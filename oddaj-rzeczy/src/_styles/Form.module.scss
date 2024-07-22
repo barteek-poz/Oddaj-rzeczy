@@ -83,7 +83,21 @@
       font-weight: 300;
       outline-color: $color-yellow;
     }
+    label {
+      margin-right: 1rem;
+    }
   }
 
- 
+}
+
+.formBanner {
+  padding: 5rem 14rem;
+  background: $color-yellow;
+  span {
+    font-size: 3.6rem;
+    font-weight: 700;
+  }
+  p{
+    font-size: 2.2rem;
+  }
 }
