@@ -5,6 +5,7 @@ import { useState } from "react";
 import styles from "../_styles/LoginForm.module.scss";
 import LinkButton from "./LinkButton";
 import useFormValidate from "@/_hooks/useFormValidate";
+import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
   const [emailValue, setEmailValue] = useState("");
@@ -22,7 +23,22 @@ const LoginForm = () => {
       router.push("/");
     } else setError(true);
   };
-
+  const singInHandler = async () => {
+    signIn("credentials", {
+      emailValue,
+      passwordValue,
+      redirect: false,
+     
+    }).then(({ok}) => {
+      if(ok) {
+        setError(false)
+        router.push('/')
+      } else {
+        setError(true)
+        setEmailValue('')
+        setPasswordValue('')
+      }
+    })}
   return (
     <>
       <div className={styles.LoginFormBox}>
@@ -58,8 +74,8 @@ const LoginForm = () => {
           <LinkButton href="/register">Załóż konto</LinkButton>
           <div className={styles.active}>
             <LinkButton
-              onBtnClick={(e) => formSubmitHandler(e)}
-              href={formIsValid ? "/" : "/login"}>
+              onBtnClick={singInHandler}
+              href={"/login"}>
               Zaloguj
             </LinkButton>
           </div>
