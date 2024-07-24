@@ -3,16 +3,19 @@ import Link from "next/link";
 import styles from "../_styles/LoginNavigation.module.scss";
 import LinkButton from "./LinkButton";
 import { useLoginContext } from "@/_context/LoginContext";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const LoginNavigation = () => {
-  const {userIsLogged, setUserIsLogged, userEmail}= useLoginContext()
-  
+  const { data, status } = useSession();
+  const { userIsLogged, setUserIsLogged, userEmail } = useLoginContext();
+  const router = useRouter();
   return (
     <div className={styles.loginNav}>
-      {userIsLogged ? <p>Cześć {userEmail}</p> : null}
-      {userIsLogged ? (
+      {status === "authenticated" ? <p>Cześć {data.user.email}</p> : null}
+      {status === "authenticated" ? (
         <div className={styles.active}>
-          <LinkButton href="/" active={false}>
+          <LinkButton href="/oddaj-rzeczy" active={false}>
             Oddaj rzeczy
           </LinkButton>
         </div>
@@ -21,9 +24,9 @@ const LoginNavigation = () => {
           Zaloguj
         </LinkButton>
       )}
-      {userIsLogged ? (
+      {status === "authenticated" ? (
         <Link
-        onClick={()=>{setUserIsLogged(false)}}
+          onClick={() => signOut({ callbackUrl: "/signout" })}
           href="/signout">
           Wyloguj
         </Link>

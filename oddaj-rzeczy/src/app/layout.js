@@ -4,6 +4,7 @@ import "../_styles/global.scss";
 import LoginNavigation from "@/_components/LoginNavigation";
 import { LoginContextProvider } from "@/_context/LoginContext";
 import ContactSection from "@/_components/_homepage/ContactSection";
+import SessionProvider from "./SessionProvider";
 
 const merriweather = Merriweather({ subsets: ["latin"], weight: "400" });
 const openSans = Open_Sans({
@@ -20,14 +21,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={openSans.className}>
-        <LoginContextProvider>
-          <div style={{ position: "absolute", right: 0, zIndex: 10 }}>
-            <LoginNavigation />
-            <MainNavigation />
-          </div>
-          <main>{children}</main>
-          <ContactSection/>
-        </LoginContextProvider>
+        <SessionProvider>
+          <LoginContextProvider>
+            <div style={{ position: "absolute", right: 0, zIndex: 10 }}>
+              <LoginNavigation />
+              <MainNavigation />
+            </div>
+            <main>{children}</main>
+           
+          </LoginContextProvider>
+        </SessionProvider>
       </body>
     </html>
   );

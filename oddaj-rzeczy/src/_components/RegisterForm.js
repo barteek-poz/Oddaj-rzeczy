@@ -5,6 +5,9 @@ import LinkButton from "./LinkButton";
 import useFormValidate from "@/_hooks/useFormValidate";
 import { useLoginContext } from "@/_context/LoginContext";
 import { useState } from "react";
+import { auth } from "@/app/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signIn } from "next-auth/react";
 
 const RegisterForm = () => {
   const [emailValue, setEmailValue] = useState("");
@@ -14,7 +17,16 @@ const RegisterForm = () => {
   const { setUserIsLogged, setUserEmail } = useLoginContext();
   const router = useRouter();
   const { formIsValid } = useFormValidate(emailValue, passwordValue);
-
+  const signup = async () => {
+    createUserWithEmailAndPassword(auth, emailValue, passwordValue).then(() =>
+      signIn("credentials", {
+        emailValue,
+        passwordValue,
+        redirect: true,
+        callbackUrl: "/",
+      })
+    );
+  };
   const formSubmitHandler = (e) => {
     e.preventDefault();
     if (formIsValid) {
@@ -69,7 +81,7 @@ const RegisterForm = () => {
           <div className={styles.active}>
             <LinkButton
               href={formIsValid ? "/" : "register"}
-              onBtnClick={(e) => formSubmitHandler(e)}>
+              onBtnClick={() => signup()}>
               Załóż konto
             </LinkButton>
           </div>
