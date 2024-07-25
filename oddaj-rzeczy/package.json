@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@firebase/firestore": "^4.6.4",
+    "@hookform/resolvers": "^3.9.0",
     "firebase": "^10.12.4",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
-    "react-firebase-hooks": "^5.1.1"
+    "react-firebase-hooks": "^5.1.1",
+    "react-hook-form": "^7.52.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "eslint": "^8",
