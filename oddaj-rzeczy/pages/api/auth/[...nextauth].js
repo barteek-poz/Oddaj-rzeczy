@@ -13,7 +13,7 @@ export const authOptions = {
       name: 'Credentials',
       credentials: {},
       async authorize(credentials) {
-        return await signInWithEmailAndPassword(auth, (credentials).emailValue || '', (credentials).passwordValue || '')
+        return await signInWithEmailAndPassword(auth, (credentials).email || '', (credentials).password || '')
           .then(userCredential => {
             if (userCredential.user) {
               return userCredential.user;

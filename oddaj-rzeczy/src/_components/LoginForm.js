@@ -1,90 +1,72 @@
 "use client";
-import { useLoginContext } from "@/_context/LoginContext";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import styles from "../_styles/LoginForm.module.scss";
 import LinkButton from "./LinkButton";
-import useFormValidate from "@/_hooks/useFormValidate";
-import { signIn } from "next-auth/react";
+import { loginSchema } from "@/_schemas/zodSchemas";
 
 const LoginForm = () => {
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
   const [error, setError] = useState(false);
-  const { setUserIsLogged, setUserEmail } = useLoginContext();
   const router = useRouter();
-  const { formIsValid } = useFormValidate(emailValue, passwordValue);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+  });
 
-  const formSubmitHandler = (e) => {
-    e.preventDefault();
-    if (formIsValid) {
-      setUserIsLogged(true);
-      setUserEmail(emailValue);
-      router.push("/");
-    } else setError(true);
-  };
-  const singInHandler = async () => {
+  const logInHandler = async ({ email, password }) => {
     signIn("credentials", {
-      emailValue,
-      passwordValue,
+      email,
+      password,
       redirect: false,
-     
-    }).then(({ok}) => {
-      if(ok) {
-        setError(false)
-        router.push('/')
+    }).then(({ ok }) => {
+      if (ok) {
+        setError(false);
+        router.push("/");
       } else {
-        setError(true)
-        setEmailValue('')
-        setPasswordValue('')
+        setError(true);
+        reset({ email: "", password: "" });
       }
-    })}
+    });
+  };
   return (
     <>
       <div className={styles.LoginFormBox}>
-        <form className={styles.LoginForm}>
+        <form
+          name="loginForm"
+          id="loginForm"
+          className={styles.LoginForm}
+          onSubmit={handleSubmit(logInHandler)}>
           <div className={styles.inputBox}>
             <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              required
-              value={emailValue}
-              onChange={(e) => {
-                setEmailValue(e.target.value);
-                setError(false);
-              }}
-            />
+            <input type="email" name="email" {...register("email")} />
+            {errors.email && <p>{errors.email.message}</p>}
           </div>
           <div className={styles.inputBox}>
             <label>Hasło</label>
-            <input
-              type="password"
-              required
-              value={passwordValue}
-              onChange={(e) => {
-                setPasswordValue(e.target.value);
-                setError(false);
-              }}
-            />
+            <input type="password" name="password" {...register("password")} />
+            {errors.password && <p>{errors.password.message}</p>}
           </div>
         </form>
-
         <div className={styles.formButtons}>
           <LinkButton href="/register">Załóż konto</LinkButton>
           <div className={styles.active}>
-            <LinkButton
-              onBtnClick={singInHandler}
-              href={"/login"}>
+            <button type="submit" form="loginForm">
               Zaloguj
-            </LinkButton>
+            </button>
           </div>
         </div>
       </div>
       {error && (
         <p className={styles.error}>
-          Wystąpił błąd w formularzu. Upewnij się, że podałes poprawny adres
-          email oraz hasło
+          Brak użytkownika o takim adresie email. Musisz najpierw założyć konto,
+          aby się zalogować.
         </p>
       )}
     </>
