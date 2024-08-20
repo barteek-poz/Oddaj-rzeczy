@@ -5,7 +5,6 @@ import styles from "../_styles/FormLocation.module.scss";
 const FormLocation = ({ location, targets, organization, updateForm }) => {
   const {register, formState: { errors }} = useFormContext();
 
-console.log(targets);
   const updateTargetsArray = (targetValue) => {
     const filteredTarget = targets.filter((target) => target === targetValue);
     if (filteredTarget.length > 0) {
@@ -96,8 +95,7 @@ console.log(targets);
                 type="checkbox"
                 value="niepełnosprawnym"
                 checked={
-                  targets.filter((target) => target === "niepełnosprawnym")
-                    .length > 0
+                  targets.filter((target) => target === "niepełnosprawnym").length > 0
                 }
                 {...register("targets", {
                   onChange: (e) => updateTargetsArray(e.target.value),

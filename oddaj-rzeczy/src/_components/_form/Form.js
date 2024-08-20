@@ -1,61 +1,31 @@
 "use client";
-import { useMultistepForm } from "@/_hooks/useMultistepForm";
-import { useState } from "react";
-import styles from "../../_styles/Form.module.scss";
-import FormAddress from "../FormAddress";
-import FormBags from "../FormBags";
-import FormButton from "../FormButton";
-import FormLocation from "../FormLocation";
-import FormSummary from "../FormSummary";
-import FormThankYou from "../FormThankYou";
-import FormTypes from "../FormTypes";
+import { initialFormData } from "@/_constans/constans";
+import { formsValidationSchema } from "@/_schemas/zodSchemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import {
   addExistingUserForm,
   addNewUserForm,
 } from "../../../lib/firestore-actions";
-import { z } from "zod";
-import { FormProvider, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-const initialFormData = {
-  type: "",
-  numOfBags: "",
-  location: "",
-  targets: [],
-  organization: "",
-  steet: "",
-  city: "",
-  postal: "",
-  phone: "",
-  date: "",
-  time: "",
-  info: "",
-};
-
-const validationSchema = [
-  z.object({itemType: z.string().min(1),}).required(),
-  z.object({bags: z.string().min(1),}).required().refine((data)=> data.bags !== 'default' , {
-        message: 'Wybierz rozmiar worka', 
-        path: ['bags']
-    }),
-z.object({
-    location: z.string().min(1),
-    targets: z.string().array().nonempty()
-}).required().refine((data)=> data.location !== 'default' , {
-    message: 'Wybierz lokalizację', 
-    path: ['location']
-})
-];
+import styles from "../../_styles/Form.module.scss";
+import FormButton from "../FormButton";
+import FormTypes from "../FormTypes";
+import FormBags from "../FormBags";
+import FormLocation from "../FormLocation";
+import FormAddress from "../FormAddress";
+import FormSummary from "../FormSummary";
+import FormThankYou from "../FormThankYou";
 
 const Form = ({ usersData }) => {
   const [formData, setFormData] = useState(initialFormData);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const session = useSession();
   const methods = useForm({
-    resolver: zodResolver(validationSchema[currentStepIndex]),
+    resolver: zodResolver(formsValidationSchema[currentStepIndex]),
   });
-  const { handleSubmit, reset, trigger } = methods;
+  const { trigger } = methods;
 
   const updateForm = (updatedData) => {
     setFormData((prevData) => {
@@ -92,20 +62,20 @@ const Form = ({ usersData }) => {
       form: <FormThankYou />,
     },
   ];
+
   const nextStep = async () => {
-    if(currentStepIndex < 3) {
+    if (currentStepIndex <= 3) {
       const isCurrFormValid = await trigger();
       if (isCurrFormValid) {
-          console.log(isCurrFormValid);
         setCurrentStepIndex((prevIndex) => prevIndex + 1);
       }
     } else setCurrentStepIndex((prevIndex) => prevIndex + 1);
-   
   };
 
   const prevStep = () => {
     setCurrentStepIndex((prevIndex) => prevIndex - 1);
   };
+
   const submitFormHandler = () => {
     const existingUser = usersData.find(
       (user) => user.email === session.data?.user?.email

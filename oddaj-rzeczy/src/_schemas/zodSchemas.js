@@ -35,3 +35,24 @@ export const registerSchema = z
     message: "Hasła muszą być takie same",
     path: ["password2"],
   });
+
+  export const formsValidationSchema = [
+    z.object({itemType: z.string().min(1),}).required(),
+    z.object({bags: z.string().min(1),}).required().refine((data)=> data.bags !== 'default' , {
+          message: 'Wybierz rozmiar worka', 
+          path: ['bags']
+      }),
+  z.object({
+      location: z.string().min(1),
+      targets: z.string().array().nonempty()
+  }).required().refine((data)=> data.location !== 'default' , {
+      message: 'Wybierz lokalizację', 
+      path: ['location']
+  }), 
+  z.object({
+    street: z.string().min(1, 'Podaj ulicę'),
+    city: z.string().min(1, 'Podaj miasto'),
+    postal: z.number({message: "Kod pocztowy składa się z 5 cyfr"}).min(5, "Podaj kod pocztowy").max(5, "Podaj kod pocztowy"),
+    phone: z.number({message:'Numer telefonu musi składać się z 9 cyfr'}).min(9 ,'Podaj numer telefonu').max(9, 'Podaj numer telefonu'),
+  })
+  ];
