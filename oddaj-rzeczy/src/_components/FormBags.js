@@ -1,4 +1,7 @@
+import { useFormContext } from "react-hook-form";
+
 const FormBags = ({ numOfBags, updateForm }) => {
+  const { register, formState:{errors} } = useFormContext();
   return (
     <div>
       <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
@@ -6,8 +9,11 @@ const FormBags = ({ numOfBags, updateForm }) => {
         <label>Liczba 60l worków:</label>
         <select
           name="bags"
+          id="bags"
           defaultValue={numOfBags ? numOfBags : 'default'}
-          onChange={(e) => updateForm({ numOfBags: e.target.value })}>
+          {...register('bags', {
+            onChange: (e) => updateForm({ numOfBags: e.target.value })
+          })}>
           <option value="default" disabled>
             - wybierz -
           </option>
@@ -18,6 +24,7 @@ const FormBags = ({ numOfBags, updateForm }) => {
           <option value="5">5</option>
         </select>
       </div>
+      {errors.bags && <p>{errors.bags.message}</p>}
     </div>
   );
 };

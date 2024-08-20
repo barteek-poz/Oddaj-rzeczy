@@ -34,8 +34,8 @@ const ContactSection = () => {
         <p className={styles.copyright}>Copyright by CodersLab</p>
       <div className={styles.icons}>
         <div>
-          <Image src={facebook}/>
-          <Image src={instagram}/>
+          <Image src={facebook} alt="facebook-icon"/>
+          <Image src={instagram} alt="instagram-icon"/>
         </div>
       </div>
     </section>

@@ -1,39 +1,31 @@
 "use client";
-import { useMultistepForm } from "@/_hooks/useMultistepForm";
-import { useState } from "react";
-import styles from "../../_styles/Form.module.scss";
-import FormAddress from "../FormAddress";
-import FormBags from "../FormBags";
-import FormButton from "../FormButton";
-import FormLocation from "../FormLocation";
-import FormSummary from "../FormSummary";
-import FormThankYou from "../FormThankYou";
-import FormTypes from "../FormTypes";
+import { initialFormData } from "@/_constans/constans";
+import { formsValidationSchema } from "@/_schemas/zodSchemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import {
   addExistingUserForm,
   addNewUserForm,
 } from "../../../lib/firestore-actions";
-
-const initialFormData = {
-  type: "",
-  numOfBags: "",
-  location: "",
-  targets: [],
-  organization: "",
-  steet: "",
-  city: "",
-  postal: "",
-  phone: "",
-  date: "",
-  time: "",
-  info: "",
-};
+import styles from "../../_styles/Form.module.scss";
+import FormButton from "../FormButton";
+import FormTypes from "../FormTypes";
+import FormBags from "../FormBags";
+import FormLocation from "../FormLocation";
+import FormAddress from "../FormAddress";
+import FormSummary from "../FormSummary";
+import FormThankYou from "../FormThankYou";
 
 const Form = ({ usersData }) => {
   const [formData, setFormData] = useState(initialFormData);
-  const [formIsValid, setFormIsValid] = useState(false);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const session = useSession();
+  const methods = useForm({
+    resolver: zodResolver(formsValidationSchema[currentStepIndex]),
+  });
+  const { trigger } = methods;
 
   const updateForm = (updatedData) => {
     setFormData((prevData) => {
@@ -71,14 +63,18 @@ const Form = ({ usersData }) => {
     },
   ];
 
-  const {
-    step,
-    currentStepIndex,
-    isFirstStep,
-    isLastStep,
-    previousStep,
-    nextStep,
-  } = useMultistepForm(formsArr);
+  const nextStep = async () => {
+    if (currentStepIndex <= 3) {
+      const isCurrFormValid = await trigger();
+      if (isCurrFormValid) {
+        setCurrentStepIndex((prevIndex) => prevIndex + 1);
+      }
+    } else setCurrentStepIndex((prevIndex) => prevIndex + 1);
+  };
+
+  const prevStep = () => {
+    setCurrentStepIndex((prevIndex) => prevIndex - 1);
+  };
 
   const submitFormHandler = () => {
     const existingUser = usersData.find(
@@ -95,20 +91,24 @@ const Form = ({ usersData }) => {
 
   return (
     <section>
-      {step.description ? (
+      {formsArr[currentStepIndex].description ? (
         <div className={styles.formBanner}>
-          <span>Ważne!</span> <p>{step.description}</p>
+          <span>Ważne!</span> <p>{formsArr[currentStepIndex].description}</p>
         </div>
       ) : null}
       <div className={styles.form}>
         {currentStepIndex >= 4 ? null : (
           <span>Krok {currentStepIndex + 1}/ 4</span>
         )}
-        <form className={styles.userForm}>{step.form}</form>
-        {isLastStep ? null : (
+        <FormProvider {...methods}>
+          <form className={styles.userForm}>
+            {formsArr[currentStepIndex].form}
+          </form>
+        </FormProvider>
+        {currentStepIndex === 5 ? null : (
           <div className={styles.formBtns}>
-            {isFirstStep ? null : (
-              <FormButton onBtnClick={previousStep}>Wstecz</FormButton>
+            {currentStepIndex === 0 ? null : (
+              <FormButton onBtnClick={prevStep}>Wstecz</FormButton>
             )}
             {currentStepIndex <= 3 ? (
               <FormButton onBtnClick={nextStep}>Dalej</FormButton>

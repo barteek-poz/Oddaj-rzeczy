@@ -1,96 +1,78 @@
 "use client";
-import { useRouter } from "next/navigation";
-import styles from "../_styles/RegisterForm.module.scss";
-import LinkButton from "./LinkButton";
-import useFormValidate from "@/_hooks/useFormValidate";
-import { useLoginContext } from "@/_context/LoginContext";
-import { useState } from "react";
+import { registerSchema } from "@/_schemas/zodSchemas";
 import { auth } from "@/app/firebase";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import styles from "../_styles/RegisterForm.module.scss";
+import LinkButton from "./LinkButton";
 
 const RegisterForm = () => {
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [password2Value, setPassword2Value] = useState("");
   const [error, setError] = useState(false);
-  const { setUserIsLogged, setUserEmail } = useLoginContext();
-  const router = useRouter();
-  const { formIsValid } = useFormValidate(emailValue, passwordValue);
-  const signup = async () => {
-    createUserWithEmailAndPassword(auth, emailValue, passwordValue).then(() =>
-      signIn("credentials", {
-        emailValue,
-        passwordValue,
-        redirect: true,
-        callbackUrl: "/",
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+  });
+
+  const registerUserHandler = async ({ email, password }) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        signIn("credentials", {
+          email,
+          password,
+          redirect: true,
+          callbackUrl: "/",
+        });
+        setError(false);
       })
-    );
+      .catch((error) => setError(true));
   };
-  const formSubmitHandler = (e) => {
-    e.preventDefault();
-    if (formIsValid) {
-      setUserIsLogged(true);
-      setUserEmail(emailValue);
-      router.push("/");
-    } else setError(true);
-  };
+
   return (
     <>
       <div className={styles.registerFormBox}>
-        <form className={styles.registerForm}>
+        <form
+          className={styles.registerForm}
+          id="registerForm"
+          onSubmit={handleSubmit(registerUserHandler)}>
           <div className={styles.inputBox}>
             <label>Email</label>
-            <input
-              type="email"
-              value={emailValue}
-              onChange={(e) => {
-                setEmailValue(e.target.value);
-                setError(false);
-              }}
-              required
-            />
+            <input type="email" name="email" {...register("email")} />
+            {errors.email && <p>{errors.email.message}</p>}
           </div>
           <div className={styles.inputBox}>
             <label>Hasło</label>
-            <input
-              type="password"
-              value={passwordValue}
-              onChange={(e) => {
-                setPasswordValue(e.target.value);
-                setError(false);
-              }}
-              required
-            />
+            <input type="password" name="password" {...register("password")} />
+            {errors.password && <p>{errors.password.message}</p>}
           </div>
           <div className={styles.inputBox}>
             <label>Powtórz hasło</label>
             <input
               type="password"
-              value={password2Value}
-              onChange={(e) => {
-                setPassword2Value(e.target.value);
-                setError(false);
-              }}
-              required
+              name="password2"
+              {...register("password2")}
             />
+            {errors.password2 && <p>{errors.password2.message}</p>}
           </div>
         </form>
         <div className={styles.formButtons}>
           <LinkButton href="/login">Zaloguj się</LinkButton>
           <div className={styles.active}>
-            <LinkButton
-              href={formIsValid ? "/" : "register"}
-              onBtnClick={() => signup()}>
+            <button type="submit" form="registerForm">
               Załóż konto
-            </LinkButton>
+            </button>
           </div>
         </div>
       </div>
       {error && (
         <p className={styles.error}>
-          Wystąpił błąd w formularzu. Upewnij się, że podałes poprawny adres
-          email oraz hasło
+          Podany adres email występuje już w naszej bazie. Przejdź do strony
+          logowania.
         </p>
       )}
     </>

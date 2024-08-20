@@ -23,6 +23,11 @@
     outline: none;
     background-color: $color-white;
   }
+  p {
+    max-width: 25rem;
+    margin-bottom: 2rem;
+    color: red;
+  }
 }
 
 .formButtons {
@@ -30,9 +35,12 @@
   align-items: center;
   justify-content: space-between;
 
-  a {
+  a, button {
     font-size: 1.8rem;
-   
+    font-weight: 300;
+    font-family: inherit;
+    border: none;
+    background-color: transparent;
   }
 }
 

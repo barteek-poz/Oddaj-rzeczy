@@ -3,6 +3,7 @@
 .formLocation {
   p {
     margin: 5rem 0 2rem 0;
+    color: $color-dark-gray;
   }
   input {
     background-color: transparent;
@@ -12,8 +13,21 @@
     outline-color: $color-yellow;
     padding: 0 1rem;
   }
+  .error {
+    color:red
+  }
 }
-
+.formSelect {
+  display: flex;
+  align-items: center;
+  
+  p {
+    margin: 0;
+    margin-left: 2rem;
+    
+  }
+ 
+}
 .checkboxes {
   max-width: 50%;
   display: flex;
@@ -66,4 +80,5 @@ overflow: hidden;
       background-color: $color-yellow;
     }
   }
+  
 }
