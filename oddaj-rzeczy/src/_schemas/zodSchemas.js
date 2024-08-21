@@ -50,9 +50,11 @@ export const registerSchema = z
       path: ['location']
   }), 
   z.object({
-    street: z.string().min(1, 'Podaj ulicę'),
-    city: z.string().min(1, 'Podaj miasto'),
-    postal: z.number({message: "Kod pocztowy składa się z 5 cyfr"}).min(5, "Podaj kod pocztowy").max(5, "Podaj kod pocztowy"),
-    phone: z.number({message:'Numer telefonu musi składać się z 9 cyfr'}).min(9 ,'Podaj numer telefonu').max(9, 'Podaj numer telefonu'),
+    street: z.string().regex(/^[a-zA-Z]+$/, "Nazwa ulicy może zawierać tylko litery").min(1),
+    city: z.string().regex(/^[a-zA-Z]+$/, "Nazwa miasta może zawierać tylko litery").min(1),
+    postal: z.string().regex(/^\d{5}$/, "Kod pocztowy musi składać się z 5 cyfr"),
+    phone: z.string().regex(/^\d{9}$/, "Ciąg musi składać się z 9 cyfr"),
+    date: z.string().min(1, 'Wybierz datę'),
+    time: z.string().min(1, 'Wybierz godzinę')
   })
   ];
