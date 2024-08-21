@@ -15,9 +15,6 @@ const FormAddress = ({
     register,
     formState: { errors },
   } = useFormContext();
-console.log(street);
-console.log(errors['city']);
-
   return (
     <div>
       <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera</h3>
