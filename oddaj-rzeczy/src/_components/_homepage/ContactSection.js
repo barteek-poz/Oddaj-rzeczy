@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styles from "../../_styles/ContactSection.module.scss";
 import decoration from "../../../public/assets/Decoration.svg";
-import facebook from "../../../public/assets/facebook.svg"
-import instagram from "../../../public/assets/instagram.svg"
+import facebook from "../../../public/assets/Facebook.svg"
+import instagram from "../../../public/assets/Instagram.svg"
 import LinkButton from "../LinkButton";
 
 const ContactSection = () => {
